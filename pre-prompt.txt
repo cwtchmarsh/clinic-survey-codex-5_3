@@ -1,0 +1,9 @@
+Create a prompt to feed to an IA coding tool to generate a web hosted  application for  github.io.
+Purpose:  A simple survey application for customer clinic participants to provide their feedback, ratings and comments on vehicles and / or vehicle features and or vehicle related services
+
+The participant must be able to enter to their full name and e-mail address
+
+Generate and include 10 sample questions for the application.
+
+Once the survey is complete, the user is able to either export their results as .json and/or submit via e-mail
+

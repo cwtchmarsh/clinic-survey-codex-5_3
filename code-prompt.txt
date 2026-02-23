@@ -1,0 +1,27 @@
+Role and Goal: Act as an expert frontend web developer. I need you to build a single-page survey application that will be hosted on GitHub Pages. The purpose of this app is for customer clinic participants to provide feedback, ratings, and comments on vehicles, vehicle features, and related services.
+Tech Stack: Please use HTML5, CSS3 (Tailwind CSS via CDN for rapid, modern styling), and Vanilla JavaScript. The app must be entirely client-side, as it will be hosted on GitHub Pages which does not support backend processing.
+Application Requirements:
+	1. Header/Intro: A clean, professional header with the title "Vehicle Customer Clinic Feedback" and a brief welcome message.
+	2. User Information Section: 
+		○ Full Name (Required text input)
+		○ Email Address (Required email input)
+	3. Survey Section: Include the following 10 sample questions. Please use a mix of input types (star ratings or 1-5 radio buttons, dropdowns, and text areas): 
+		○ Q1: Overall satisfaction with the vehicle's exterior design. (Rating 1-5)
+		○ Q2: Comfort and ergonomics of the interior seating. (Rating 1-5)
+		○ Q3: Ease of use and responsiveness of the infotainment system. (Rating 1-5)
+		○ Q4: Which vehicle feature is most important to your purchasing decision? (Dropdown: Performance, Safety, Technology, Comfort, Fuel Efficiency/EV Range)
+		○ Q5: Satisfaction with the vehicle's acceleration and handling. (Rating 1-5)
+		○ Q6: Clarity and usefulness of the digital instrument cluster/displays. (Rating 1-5)
+		○ Q7: How would you rate the cargo space and storage options? (Rating 1-5)
+		○ Q8: Based on your experience today, how likely are you to recommend this vehicle to a friend or colleague? (Rating 1-10)
+		○ Q9: Please provide your thoughts on the dealership and customer service experience. (Text area)
+		○ Q10: Do you have any additional comments or suggestions for improvement? (Text area)
+	4. Action Buttons (Submission Handling): 
+		○ Export as JSON: A button that gathers all form data, formats it into a JSON object, creates a downloadable Blob, and triggers a download of survey_results.json to the user's device.
+		○ Submit via Email: A button that gathers the form data, formats it into a clean, readable plain-text string, and opens the user's default email client using a mailto: link with a pre-filled subject line and body.
+Design & UX:
+	• Make the UI mobile-responsive, clean, and modern.
+	• Group the questions logically with nice spacing (e.g., using Tailwind cards).
+	• Add basic HTML form validation to ensure the Name and Email fields are filled out before allowing export or email submission.
+Please provide the complete, ready-to-run code in a single index.html file (with embedded CSS/JS) or split into index.html and app.js if that is cleaner. Include comments explaining how the JSON export and mailto functions work.
+
