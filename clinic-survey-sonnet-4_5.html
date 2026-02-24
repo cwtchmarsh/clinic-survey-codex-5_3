@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Customer Clinic Feedback</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* Custom styles for star ratings and smooth interactions */
+        .star-rating {
+            display: flex;
+            gap: 0.25rem;
+            font-size: 1.5rem;
+        }
+        
+        .star {
+            cursor: pointer;
+            color: #d1d5db;
+            transition: color 0.2s ease;
+        }
+        
+        .star:hover,
+        .star.active {
+            color: #fbbf24;
+        }
+        
+        .radio-rating label {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .radio-rating input:checked + label {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    
+    <!-- Main Container -->
+    <div class="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header Section -->
+        <header class="bg-white rounded-lg shadow-md p-6 sm:p-8 mb-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+                Vehicle Customer Clinic Feedback
+            </h1>
+            <p class="text-gray-600 text-base sm:text-lg">
+                Thank you for participating in our customer clinic! Your feedback helps us design better vehicles and experiences. Please take a few minutes to share your thoughts on the vehicle you evaluated today.
+            </p>
+        </header>
+
+        <!-- Feedback Form -->
+        <form id="feedbackForm" class="space-y-6">
+            
+            <!-- User Information Section -->
+            <section class="bg-white rounded-lg shadow-md p-6 sm:p-8">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 border-b pb-3">
+                    Your Information
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Full Name -->
+                    <div>
+                        <label for="fullName" class="block text-sm font-medium text-gray-700 mb-2">
+                            Full Name <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="fullName" 
+                            name="fullName" 
+                            required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                            placeholder="John Doe"
+                        >
+                    </div>
+                    
+                    <!-- Email Address -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                            Email Address <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                            placeholder="john.doe@example.com"
+                        >
+                    </div>
+                </div>
+            </section>
+
+            <!-- Survey Questions Section -->
+            <section class="bg-white rounded-lg shadow-md p-6 sm:p-8">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 border-b pb-3">
+                    Vehicle Feedback
+                </h2>
+                
+                <div class="space-y-8">
+                    
+                    <!-- Q1: Exterior Design -->
+                    <div class="pb-6 border-b border-gray-200">
+                        <label class="block text-sm font-medium text-gray-900 mb-3">
+                            1. Overall satisfaction with the vehicle's exterior design.
+                        </label>
+                        <div class="radio-rating flex flex-wrap gap-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="q1_1" name="q1_exterior" value="1" class="hidden">
+                                <label for="q1_1" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">1</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q1_2" name="q1_exterior" value="2" class="hidden">
+                                <label for="q1_2" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">2</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q1_3" name="q1_exterior" value="3" class="hidden">
+                                <label for="q1_3" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">3</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q1_4" name="q1_exterior" value="4" class="hidden">
+                                <label for="q1_4" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">4</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q1_5" name="q1_exterior" value="5" class="hidden">
+                                <label for="q1_5" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">5</label>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">1 = Very Dissatisfied, 5 = Very Satisfied</p>
+                    </div>
+
+                    <!-- Q2: Interior Comfort -->
+                    <div class="pb-6 border-b border-gray-200">
+                        <label class="block text-sm font-medium text-gray-900 mb-3">
+                            2. Comfort and ergonomics of the interior seating.
+                        </label>
+                        <div class="radio-rating flex flex-wrap gap-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="q2_1" name="q2_interior" value="1" class="hidden">
+                                <label for="q2_1" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">1</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q2_2" name="q2_interior" value="2" class="hidden">
+                                <label for="q2_2" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">2</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q2_3" name="q2_interior" value="3" class="hidden">
+                                <label for="q2_3" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">3</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q2_4" name="q2_interior" value="4" class="hidden">
+                                <label for="q2_4" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">4</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q2_5" name="q2_interior" value="5" class="hidden">
+                                <label for="q2_5" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">5</label>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">1 = Very Dissatisfied, 5 = Very Satisfied</p>
+                    </div>
+
+                    <!-- Q3: Infotainment System -->
+                    <div class="pb-6 border-b border-gray-200">
+                        <label class="block text-sm font-medium text-gray-900 mb-3">
+                            3. Ease of use and responsiveness of the infotainment system.
+                        </label>
+                        <div class="radio-rating flex flex-wrap gap-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="q3_1" name="q3_infotainment" value="1" class="hidden">
+                                <label for="q3_1" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">1</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q3_2" name="q3_infotainment" value="2" class="hidden">
+                                <label for="q3_2" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">2</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q3_3" name="q3_infotainment" value="3" class="hidden">
+                                <label for="q3_3" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">3</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q3_4" name="q3_infotainment" value="4" class="hidden">
+                                <label for="q3_4" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">4</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q3_5" name="q3_infotainment" value="5" class="hidden">
+                                <label for="q3_5" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">5</label>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">1 = Very Dissatisfied, 5 = Very Satisfied</p>
+                    </div>
+
+                    <!-- Q4: Most Important Feature (Dropdown) -->
+                    <div class="pb-6 border-b border-gray-200">
+                        <label for="q4_feature" class="block text-sm font-medium text-gray-900 mb-3">
+                            4. Which vehicle feature is most important to your purchasing decision?
+                        </label>
+                        <select 
+                            id="q4_feature" 
+                            name="q4_feature"
+                            class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                        >
+                            <option value="">-- Select an option --</option>
+                            <option value="Performance">Performance</option>
+                            <option value="Safety">Safety</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Comfort">Comfort</option>
+                            <option value="Fuel Efficiency/EV Range">Fuel Efficiency/EV Range</option>
+                        </select>
+                    </div>
+
+                    <!-- Q5: Acceleration and Handling -->
+                    <div class="pb-6 border-b border-gray-200">
+                        <label class="block text-sm font-medium text-gray-900 mb-3">
+                            5. Satisfaction with the vehicle's acceleration and handling.
+                        </label>
+                        <div class="radio-rating flex flex-wrap gap-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="q5_1" name="q5_acceleration" value="1" class="hidden">
+                                <label for="q5_1" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">1</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q5_2" name="q5_acceleration" value="2" class="hidden">
+                                <label for="q5_2" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">2</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q5_3" name="q5_acceleration" value="3" class="hidden">
+                                <label for="q5_3" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">3</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q5_4" name="q5_acceleration" value="4" class="hidden">
+                                <label for="q5_4" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">4</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q5_5" name="q5_acceleration" value="5" class="hidden">
+                                <label for="q5_5" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">5</label>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">1 = Very Dissatisfied, 5 = Very Satisfied</p>
+                    </div>
+
+                    <!-- Q6: Digital Displays -->
+                    <div class="pb-6 border-b border-gray-200">
+                        <label class="block text-sm font-medium text-gray-900 mb-3">
+                            6. Clarity and usefulness of the digital instrument cluster/displays.
+                        </label>
+                        <div class="radio-rating flex flex-wrap gap-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="q6_1" name="q6_displays" value="1" class="hidden">
+                                <label for="q6_1" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">1</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q6_2" name="q6_displays" value="2" class="hidden">
+                                <label for="q6_2" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">2</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q6_3" name="q6_displays" value="3" class="hidden">
+                                <label for="q6_3" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">3</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q6_4" name="q6_displays" value="4" class="hidden">
+                                <label for="q6_4" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">4</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q6_5" name="q6_displays" value="5" class="hidden">
+                                <label for="q6_5" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">5</label>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">1 = Very Dissatisfied, 5 = Very Satisfied</p>
+                    </div>
+
+                    <!-- Q7: Cargo Space -->
+                    <div class="pb-6 border-b border-gray-200">
+                        <label class="block text-sm font-medium text-gray-900 mb-3">
+                            7. How would you rate the cargo space and storage options?
+                        </label>
+                        <div class="radio-rating flex flex-wrap gap-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="q7_1" name="q7_cargo" value="1" class="hidden">
+                                <label for="q7_1" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">1</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q7_2" name="q7_cargo" value="2" class="hidden">
+                                <label for="q7_2" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">2</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q7_3" name="q7_cargo" value="3" class="hidden">
+                                <label for="q7_3" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">3</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q7_4" name="q7_cargo" value="4" class="hidden">
+                                <label for="q7_4" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">4</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q7_5" name="q7_cargo" value="5" class="hidden">
+                                <label for="q7_5" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">5</label>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">1 = Very Dissatisfied, 5 = Very Satisfied</p>
+                    </div>
+
+                    <!-- Q8: Recommendation Likelihood (1-10) -->
+                    <div class="pb-6 border-b border-gray-200">
+                        <label class="block text-sm font-medium text-gray-900 mb-3">
+                            8. Based on your experience today, how likely are you to recommend this vehicle to a friend or colleague?
+                        </label>
+                        <div class="radio-rating flex flex-wrap gap-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="q8_1" name="q8_recommend" value="1" class="hidden">
+                                <label for="q8_1" class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 text-sm">1</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q8_2" name="q8_recommend" value="2" class="hidden">
+                                <label for="q8_2" class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 text-sm">2</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q8_3" name="q8_recommend" value="3" class="hidden">
+                                <label for="q8_3" class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 text-sm">3</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q8_4" name="q8_recommend" value="4" class="hidden">
+                                <label for="q8_4" class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 text-sm">4</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q8_5" name="q8_recommend" value="5" class="hidden">
+                                <label for="q8_5" class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 text-sm">5</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q8_6" name="q8_recommend" value="6" class="hidden">
+                                <label for="q8_6" class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 text-sm">6</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q8_7" name="q8_recommend" value="7" class="hidden">
+                                <label for="q8_7" class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 text-sm">7</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q8_8" name="q8_recommend" value="8" class="hidden">
+                                <label for="q8_8" class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 text-sm">8</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q8_9" name="q8_recommend" value="9" class="hidden">
+                                <label for="q8_9" class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 text-sm">9</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="q8_10" name="q8_recommend" value="10" class="hidden">
+                                <label for="q8_10" class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 text-sm">10</label>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">1 = Not at all likely, 10 = Extremely likely</p>
+                    </div>
+
+                    <!-- Q9: Dealership Experience (Text Area) -->
+                    <div class="pb-6 border-b border-gray-200">
+                        <label for="q9_dealership" class="block text-sm font-medium text-gray-900 mb-3">
+                            9. Please provide your thoughts on the dealership and customer service experience.
+                        </label>
+                        <textarea 
+                            id="q9_dealership" 
+                            name="q9_dealership"
+                            rows="4"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-y"
+                            placeholder="Share your experience with the dealership staff, facility, and overall service..."
+                        ></textarea>
+                    </div>
+
+                    <!-- Q10: Additional Comments (Text Area) -->
+                    <div>
+                        <label for="q10_comments" class="block text-sm font-medium text-gray-900 mb-3">
+                            10. Do you have any additional comments or suggestions for improvement?
+                        </label>
+                        <textarea 
+                            id="q10_comments" 
+                            name="q10_comments"
+                            rows="4"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-y"
+                            placeholder="Any other feedback, suggestions, or concerns you'd like to share..."
+                        ></textarea>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Action Buttons Section -->
+            <section class="bg-white rounded-lg shadow-md p-6 sm:p-8">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 border-b pb-3">
+                    Submit Your Feedback
+                </h2>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <!-- Export as JSON Button -->
+                    <button 
+                        type="button"
+                        id="exportJsonBtn"
+                        class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                    >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Export as JSON
+                    </button>
+                    
+                    <!-- Submit via Email Button -->
+                    <button 
+                        type="button"
+                        id="submitEmailBtn"
+                        class="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                    >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        Submit via Email
+                    </button>
+                </div>
+                
+                <p class="text-sm text-gray-500 mt-4 text-center">
+                    Both buttons require Name and Email to be filled out. JSON export downloads a file to your device. Email option opens your default email client.
+                </p>
+            </section>
+
+        </form>
+
+        <!-- Footer -->
+        <footer class="mt-8 text-center text-gray-500 text-sm">
+            <p>&copy; 2024 Ford Motor Company. Thank you for your valuable feedback!</p>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Get form and button references
+        const form = document.getElementById('feedbackForm');
+        const exportJsonBtn = document.getElementById('exportJsonBtn');
+        const submitEmailBtn = document.getElementById('submitEmailBtn');
+
+        /**
+         * Collects all form data and returns it as a JavaScript object
+         * @returns {Object} Form data object with all user responses
+         */
+        function collectFormData() {
+            const formData = {
+                timestamp: new Date().toISOString(),
+                userInfo: {
+                    fullName: document.getElementById('fullName').value.trim(),
+                    email: document.getElementById('email').value.trim()
+                },
+                responses: {
+                    q1_exteriorDesign: getRadioValue('q1_exterior'),
+                    q2_interiorComfort: getRadioValue('q2_interior'),
+                    q3_infotainment: getRadioValue('q3_infotainment'),
+                    q4_mostImportantFeature: document.getElementById('q4_feature').value,
+                    q5_accelerationHandling: getRadioValue('q5_acceleration'),
+                    q6_digitalDisplays: getRadioValue('q6_displays'),
+                    q7_cargoSpace: getRadioValue('q7_cargo'),
+                    q8_recommendationLikelihood: getRadioValue('q8_recommend'),
+                    q9_dealershipExperience: document.getElementById('q9_dealership').value.trim(),
+                    q10_additionalComments: document.getElementById('q10_comments').value.trim()
+                }
+            };
+            return formData;
+        }
+
+        /**
+         * Helper function to get the selected radio button value
+         * @param {string} name - The name attribute of the radio button group
+         * @returns {string} The value of the selected radio button, or empty string if none selected
+         */
+        function getRadioValue(name) {
+            const selected = document.querySelector(`input[name="${name}"]:checked`);
+            return selected ? selected.value : '';
+        }
+
+        /**
+         * Validates that required fields (Name and Email) are filled out
+         * @returns {boolean} True if valid, false otherwise
+         */
+        function validateRequiredFields() {
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            
+            if (!fullName || !email) {
+                alert('Please fill out your Full Name and Email Address before submitting.');
+                return false;
+            }
+            
+            // Basic email validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                return false;
+            }
+            
+            return true;
+        }
+
+        /**
+         * EXPORT AS JSON FUNCTIONALITY
+         * This function:
+         * 1. Validates required fields
+         * 2. Collects all form data
+         * 3. Converts it to a formatted JSON string
+         * 4. Creates a Blob (binary large object) from the JSON
+         * 5. Creates a temporary download link and triggers it
+         * 6. Downloads the file as "survey_results.json" to the user's device
+         */
+        exportJsonBtn.addEventListener('click', function() {
+            // Validate required fields first
+            if (!validateRequiredFields()) {
+                return;
+            }
+            
+            // Collect form data
+            const data = collectFormData();
+            
+            // Convert to formatted JSON string (with 2-space indentation for readability)
+            const jsonString = JSON.stringify(data, null, 2);
+            
+            // Create a Blob from the JSON string
+            // The Blob represents the file data in memory
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            
+            // Create a temporary URL for the Blob
+            const url = URL.createObjectURL(blob);
+            
+            // Create a temporary anchor element to trigger download
+            const downloadLink = document.createElement('a');
+            downloadLink.href = url;
+            downloadLink.download = 'survey_results.json';
+            
+            // Append to body, click, and remove (invisible to user)
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+            
+            // Clean up the temporary URL
+            URL.revokeObjectURL(url);
+            
+            // Show success message
+            alert('Survey data exported successfully! Check your downloads folder for survey_results.json');
+        });
+
+        /**
+         * SUBMIT VIA EMAIL FUNCTIONALITY
+         * This function:
+         * 1. Validates required fields
+         * 2. Collects all form data
+         * 3. Formats it into a clean, readable plain-text string
+         * 4. Encodes the text for use in a URL (mailto link)
+         * 5. Opens the user's default email client with pre-filled subject and body
+         */
+        submitEmailBtn.addEventListener('click', function() {
+            // Validate required fields first
+            if (!validateRequiredFields()) {
+                return;
+            }
+            
+            // Collect form data
+            const data = collectFormData();
+            
+            // Format the data into a readable email body
+            const emailBody = `
+VEHICLE CUSTOMER CLINIC FEEDBACK
+Submitted: ${new Date(data.timestamp).toLocaleString()}
+
+=====================================
+USER INFORMATION
+=====================================
+Name: ${data.userInfo.fullName}
+Email: ${data.userInfo.email}
+
+=====================================
+SURVEY RESPONSES
+=====================================
+
+1. Exterior Design Rating: ${data.responses.q1_exteriorDesign || 'Not answered'}
+
+2. Interior Comfort Rating: ${data.responses.q2_interiorComfort || 'Not answered'}
+
+3. Infotainment System Rating: ${data.responses.q3_infotainment || 'Not answered'}
+
+4. Most Important Feature: ${data.responses.q4_mostImportantFeature || 'Not answered'}
+
+5. Acceleration & Handling Rating: ${data.responses.q5_accelerationHandling || 'Not answered'}
+
+6. Digital Displays Rating: ${data.responses.q6_digitalDisplays || 'Not answered'}
+
+7. Cargo Space Rating: ${data.responses.q7_cargoSpace || 'Not answered'}
+
+8. Recommendation Likelihood (1-10): ${data.responses.q8_recommendationLikelihood || 'Not answered'}
+
+9. Dealership Experience:
+${data.responses.q9_dealershipExperience || 'Not answered'}
+
+10. Additional Comments:
+${data.responses.q10_additionalComments || 'Not answered'}
+
+=====================================
+Thank you for your feedback!
+            `.trim();
+            
+            // Encode the email body for URL usage
+            // This converts special characters and spaces to URL-safe format
+            const encodedBody = encodeURIComponent(emailBody);
+            const encodedSubject = encodeURIComponent('Vehicle Customer Clinic Feedback - ' + data.userInfo.fullName);
+            
+            // Create mailto link
+            // Format: mailto:recipient@example.com?subject=...&body=...
+            // Leaving recipient blank so user can fill it in
+            const mailtoLink = `mailto:?subject=${encodedSubject}&body=${encodedBody}`;
+            
+            // Open the mailto link, which triggers the default email client
+            window.location.href = mailtoLink;
+        });
+
+        /**
+         * Form submission handler (prevents default form submission)
+         * Since we're handling everything client-side, we prevent the default
+         * form submission behavior that would try to send data to a server
+         */
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+        });
+
+        /**
+         * Optional: Add smooth visual feedback for radio button selections
+         * This makes the UX more polished by showing which option is selected
+         */
+        document.querySelectorAll('.radio-rating input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Remove active class from all labels in this group
+                const name = this.name;
+                document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+                    r.nextElementSibling.classList.remove('bg-blue-600', 'text-white');
+                });
+            });
+        });
+
+        console.log('Vehicle Customer Clinic Feedback App initialized successfully!');
+    </script>
+
+</body>
+</html>
+
